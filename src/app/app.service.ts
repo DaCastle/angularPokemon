@@ -9,19 +9,8 @@ import 'rxjs/add/operator/toPromise';
 export class AppService {
 
 	private pokeUrl = 'https://pokeapi.co/api/v2/pokemon';  // URL to web api
-  	private headers = new Headers({'Content-Type': 'application/json'});
 
   	constructor(private http: Http) { }
-
-
-  	getBulbasaur(): Promise<Pokemon> {
-  		const url = `${this.pokeUrl}/bulbasaur/`;
-  		return this.http
-  		.get(url)
-  		.toPromise()
-  		.then(results => results.json() as Pokemon)
-  		.catch(this.handleError);
-  	}
 
 
   	getPokemon(idOrName: string): Promise<Pokemon> {
@@ -33,9 +22,8 @@ export class AppService {
   	}
 
 
-
   	private handleError(error: any): Promise<any> {
-    	console.error('An error occurred with retreiving pokemon data', error); // for demo purposes only
+    	console.error('An error occurred with retreiving pokemon data', error);
     	return Promise.reject(error.message || error);
   }
 }

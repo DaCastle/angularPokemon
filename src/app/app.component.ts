@@ -12,21 +12,23 @@ import { AppService } from './app.service';
 
 export class AppComponent implements OnInit {
 
-	//bulba: Pokemon = new Pokemon;
 	pokemon: Pokemon = new Pokemon();
+	nameOrId: string = "";
 
 	constructor(
 		private AppService: AppService
 		) { }
 
 
-	getBulbasaur(): void {
-		this.AppService.getBulbasaur().then(pokemon => this.pokemon = pokemon);//console.log(pokemon));
+	getPokemon(nameOrId: string): void {
+		if (nameOrId != this.pokemon.name && nameOrId != this.pokemon.id) {
+		this.AppService.getPokemon(nameOrId.toLowerCase()).then(pokemon => this.pokemon = pokemon);//console.log(pokemon));
+		}
 	}
 
 
 	ngOnInit(): void {
-		this.getBulbasaur();
+		this.getPokemon('bulbasaur');
 	}
 
 }

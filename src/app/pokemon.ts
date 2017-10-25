@@ -1,12 +1,7 @@
 export class Pokemon {
-	// results: {
-	// 	name: string;
-	// 	id: number;
-	// 	abilities: [{},{}];
-	// 	weight: number;
-	// };
 		name: string;
-		id: number;
-		abilities: [{},{}];
-		weight: number;
+		id: string;
+		abilities: any;
+		weight: string;
+		sprites: any;
 } 

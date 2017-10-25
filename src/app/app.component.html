@@ -1,32 +1,46 @@
 <div class="col-md-12 text-center">
 	<div class="panel panel-primary">
+
+
 		<div class="panel-heading text-left">
 			Dakota's Pokemon Data
 		</div>
-		<div class="col-md-6">
-			<div class="row" style="margin-top: 1em">
+
+
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3" style="margin-top: 1em">
 				<div class="col-md-12">
 					<div class="input-group">
-						<input type="text" class="form-control" placeholder="Search for pokemon by name or Id...">
+						<input [(ngModel)]="nameOrId" (keyup.enter)=getPokemon(nameOrId) type="text" class="form-control" placeholder="Search for pokemon by name or Id...">
 						<span class="input-group-btn">
-							<button class="btn btn-default" type="button">Go!</button>
+							<button (click)=getPokemon(nameOrId) class="btn btn-default" type="button">Go!</button>
 						</span>
 					</div>
 				</div>
 			</div>
 		</div>
 		
-		<div class="panel-body col-md-6">
-			<img src="" alt="Image Here">
-			<h3>Name</h3>{{pokemon.name}}
-			<h3>Id</h3>{{pokemon.id}}
-			<h3>Weight</h3>{{pokemon.weight}}
 
-			<h3>Abilities</h3>
-			<p *ngFor="let ability of pokemon.abilities">
-				{{ability.ability.name}}
-			</p>
+		<div class="panel-body row">
+
+			<div class="col-md-6 fill">
+				<img *ngIf="pokemon.sprites" [src]="pokemon.sprites.front_default">
+			</div>
+
+			<div class="col-md-6">
+				<h3>Name</h3>{{pokemon.name}}
+				<h3>Id</h3>{{pokemon.id}}
+				<h3>Weight</h3>{{pokemon.weight}}
+
+				<h3>Abilities</h3>
+				<p *ngFor="let ability of pokemon.abilities">
+					{{ability.ability.name}}
+				</p>
+			</div>
+
 
 		</div>
+
+
 	</div>
 </div>
