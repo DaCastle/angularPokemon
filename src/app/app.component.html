@@ -23,10 +23,19 @@
 
 		<div class="panel-body row">
 
-			<div class="col-md-6">
-				<div class="col-md-12 fill" style="background-color: #cce0ff">
-					<img *ngIf="pokemon.sprites" [src]="pokemon.sprites.front_default">
-				</div>
+			<div class="fill col-md-6">
+					<div class="col-md-1" (click)=prevPoke();getPokemon();>
+						<i class="glyphicon glyphicon-chevron-left"></i>
+					</div>
+
+					<div class="fill col-md-10" style="background-color: #cce0ff">
+						<img *ngIf="pokemon.sprites" [src]="pokemon.sprites.front_default">
+					</div>
+
+					<div class="col-md-1" (click)=nextPoke();getPokemon()>
+						<i class="glyphicon glyphicon-chevron-right"></i>
+					</div>
+
 			</div>
 
 

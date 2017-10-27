@@ -13,8 +13,14 @@ export class AppService {
   	constructor(private http: Http) { }
 
 
-  	getPokemon(idOrName: string): Promise<Pokemon> {
-  		const url = `${this.pokeUrl}/${idOrName}/`;
+  	getPokemon(id: number, prevOrNext: number): Promise<Pokemon> {
+      
+      if (prevOrNext != 0) {
+        if (prevOrNext === 1) {id +=1}
+        else {id -=1}
+      }
+    
+  		const url = `${this.pokeUrl}/${id}/`;
   		return this.http.get(url)
   		.toPromise()
   		.then(results => results.json() as Pokemon)
