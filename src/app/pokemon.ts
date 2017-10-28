@@ -4,4 +4,5 @@ export class Pokemon {
 		abilities: any;
 		weight: string;
 		sprites: any;
+		stats: any;
 } 

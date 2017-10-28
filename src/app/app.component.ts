@@ -6,7 +6,7 @@ import { AppService } from './app.service';
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
-	styleUrls: ['./app.component.css'],
+	styleUrls: ['./app.component.css', './loading.directive.css'],
 	providers: [AppService]
 })
 
@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
 	pokemon: Pokemon = new Pokemon();
 	nameOrId: string = "";
 	prevOrNext: number = 0;
+	loading: boolean;
 
 	constructor(
 		private AppService: AppService
@@ -22,6 +23,7 @@ export class AppComponent implements OnInit {
 
 
 	getPokemon(nameOrId?: string): void {
+		this.loading = true;
 		let search;
 		if (nameOrId !== undefined) {
 			search = nameOrId;
@@ -33,6 +35,7 @@ export class AppComponent implements OnInit {
 				this.pokemon = pokemon;
 				this.nameOrId = "";
 				this.prevOrNext = 0;
+				this.loading = false;
 			});
 		}
 
