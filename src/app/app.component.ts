@@ -15,11 +15,12 @@ export class AppComponent implements OnInit {
 	pokemon: Pokemon = new Pokemon();
 	nameOrId: string = "";
 	prevOrNext: number = 0;
+	pokemonList: [string] = [""];
 	loading: boolean;
 
 	constructor(
 		private AppService: AppService
-		) { }
+		) {}
 
 
 	getPokemon(nameOrId?: string): void {
@@ -51,9 +52,15 @@ export class AppComponent implements OnInit {
 		this.prevOrNext = this.prevOrNext + 1;
 	}
 
+	getPokemonList(): void {
+		this.AppService.getPokemonList()
+		.then(list => this.pokemonList = list);
+	}
+
 
 	ngOnInit(): void {
 		this.getPokemon();
+		this.getPokemonList()
 	}
 
 }

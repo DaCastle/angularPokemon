@@ -13,20 +13,31 @@ export class AppService {
   	constructor(private http: Http) { }
 
 
-  	getPokemon(id: number, prevOrNext: number): Promise<Pokemon> {
+  	getPokemon(idOrName: any, prevOrNext: number): Promise<Pokemon> {
       
       if (prevOrNext != 0) {
-        if (prevOrNext === 1) {id +=1}
-        else {id -=1}
+        if (prevOrNext === 1) {idOrName +=1}
+        else {idOrName -=1}
       }
+    else {
+      idOrName = idOrName.toString().toLowerCase();
+    }
     
-  		const url = `${this.pokeUrl}/${id}/`;
+  		const url = `${this.pokeUrl}/${idOrName}/`;
   		return this.http.get(url)
   		.toPromise()
   		.then(results => results.json() as Pokemon)
   		.catch(this.handleError);
   	}
 
+
+    getPokemonList(): Promise<any> {
+
+        return this.http.get("./assets/pokemonList.json")
+        .toPromise()
+        .then(results => results.json())
+        .catch(this.handleError);
+    }
 
   	private handleError(error: any): Promise<any> {
     	console.error('An error occurred with retreiving pokemon data', error);
