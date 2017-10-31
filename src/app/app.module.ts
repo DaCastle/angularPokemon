@@ -4,6 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
 
+// import { AngularFireModule } from 'angularfire2';
+// import { AngularFirestoreModule } from 'angularfire2/firestore';
+// import { environment } from '../environments/environment';
+
 import { AppComponent } from './app.component';
 import { AppService } from './app.service';
 
@@ -16,7 +20,9 @@ import { AppService } from './app.service';
     BrowserModule,
     HttpModule,
     FormsModule,
-    Ng2AutoCompleteModule
+    Ng2AutoCompleteModule,
+    // AngularFireModule.initializeApp(environment.firebase),
+    // AngularFirestoreModule
   ],
   providers: [ AppService ],
   bootstrap: [AppComponent]

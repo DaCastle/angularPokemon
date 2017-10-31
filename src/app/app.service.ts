@@ -28,7 +28,10 @@ export class AppService {
     const url = `${this.pokeUrl}/${idOrName}/`;
     return this.http.get(url)
     .toPromise()
-    .then(results => results.json() as Pokemon)
+    .then(results => {
+      const _results = this.scrub(results.json());
+      return _results;
+    })
     .catch(this.handleError);
   }
 
@@ -45,4 +48,18 @@ export class AppService {
     console.error('An error occurred with retreiving pokemon data', error);
     return Promise.reject(error.message || error);
   }
+
+
+  private scrub(results: any): Pokemon {
+    delete results.height;
+    delete results.forms;
+    delete results.game_indices;
+    delete results.held_items;
+    delete results.location_area_encounters;
+    delete results.species;
+    delete results.types;
+    delete results.moves;
+    return results as Pokemon;
+  }
+
 }
